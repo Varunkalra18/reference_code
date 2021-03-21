@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block title%}
+Welcome
+{% endblock %}
+{% block main %}
+<div class="container formm">
+    <div class="for" id = "addbooks">
+        <p class="display-3">
+            Add a Book
+        </p>
+        <form action= "/addbooks" method="POST">
+            <div class="form-group">
+                <label>Enter the name of the book</label><br>
+                <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Book Name" type="text">
+            </div>
+            <div class="form-group">
+                <label>Enter the Description of the book</label><br>
+                <input autocomplete="off" autofocus class="form-control" name="descr" placeholder="Describe your book" type="text">
+            </div>
+            <div class="form-group">
+                <label>Enter the Category of the book</label><br>
+                <input autocomplete="off" autofocus class="form-control" name="category" placeholder="Category" type="text">
+            </div>
+            <div class="form-group">
+                <label>Enter the price of the book</label><br>
+                <input autocomplete="off" autofocus class="form-control" name="price" placeholder="Price" type="number">
+            </div>
+            <div class="form-group">
+                <label>Enter the discount on the book</label><br>
+                <input autocomplete="off" autofocus class="form-control" name="discount" placeholder="Discount Percentage" type="Number">
+            </div>
+            <div class="form-group">
+                <label>Enter number of books in stock</label><br>
+                <input autocomplete="off" autofocus class="form-control" name="stock" placeholder="Books Count" type="Number">
+            </div>
+            <button class="btn btn-primary" type="submit">ADD</button>
+        </form>
+    </div>
+</div>
+<div class="container form" id="ban">
+    <div class="for">
+    <p class="display-3">
+        Ban a user
+    </p>
+    <form action = "/ban" method="POST">
+        <div class="form-group">
+            <label>User Id of Customer</label><br>
+            <input autocomplete="off" autofocus class="form-control" name="usr" placeholder="" type="text">
+        </div>
+        <button class="btn btn-danger" type="submit">Block</button>
+    </form>
+    </div>
+</div>
+<div class="container form3" id="deletebook">
+    <div class="for">
+    <p class="display-3">
+        Delete a Book
+    </p>
+    <form action = "/delete" method="POST">
+        <div class="form-group">
+            <label>Book Name</label><br>
+            <input autocomplete="off" autofocus class="form-control" name="book" placeholder="Book Name" type="text">
+        </div>
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+    </div>
+</div>
+
+
+<div class="container pendings text-left" id="pending">
+    <p class="display-3">
+        Pending Requests
+    </p>
+    <div class="container">
+        <div class="row">
+          <div class="col-3">
+            BookId
+          </div>
+          <div class="col-3">
+            Username
+          </div>
+          <div class="col-3">
+            Address
+          </div>
+          <div class="col-3">
+            Action
+          </div>
+        </div>
+    </div>
+    <div class="container">
+    {% for ro in row %}
+    <div class="row">
+        <div class="col-3">
+        {{ro.bookid}}
+        </div>
+        <div class="col-3">
+        {{ro.username}}
+        </div>
+        <div class="col-3">
+        {{ro.address}}
+        </div>
+        <div class="col-3">
+            <form action="/delreq" method="POST">
+                <input type="hidden" name="bookid" value="{{ro.bookid}}">
+                <input type="hidden" name="username" value="{{ro.username}}">
+                <button class="btn btn-primary">Confirm Order</button>                
+            </form>
+        </div>
+    </div>
+        {% endfor %}
+      
+    </div>   
+</div>
+
+
+{% endblock %}

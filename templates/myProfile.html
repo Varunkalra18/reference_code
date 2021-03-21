@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Account
+{% endblock %}
+{% block main %}
+    <div class="container-fluid">
+        {% for ro in row %}
+        <div class="row">
+            <aside class="col-3">
+                <header>
+                    <i class="fa fa-user-circle user"></i>
+                    <h1 style="display:inline; padding:20px; font-weight:semi-bold;">Hello</h1>
+                </header>
+                <nav class="navbar d-md-block lis" id="nav">
+                    <ul style="list-style: none; text-align: left; font-size:large">
+                    <li class="list"> <i class="bi bi-wallet"></i> <a href="/orders">My Orders</a></li>
+                    <li class="list"> <i class="bi bi-person-check-fill"></i> <a href="/profile">Account Settings</a></li>
+                    <li class="list"> <i class="bi bi-envelope-fill"></i> <a href="/subscribe">Subscription</a></li>
+                    <li class="list"> <i class=" bi bi-person-lines-fill "></i> <a>My Stuffs</a></li>
+                        <ul style="list-style:none;text-align:left; font-size:medium;">
+                            <li class="list"> <i class="bi bi-bag-check-fill"></i> <a href="/cart"> My Cart</a> </li>
+                            <li class="list"> <i class="bi bi-heart"></i> <a href="/wishlist"> My Wishlist</a> </li>
+                            <li class="list"> <i class="bi bi-exclamation-square-fill"></i> <a href="/profile"> My Coupons</a> </li>
+                            <li class="list"> <i class="bi bi-bell-fill"></i> <a href="/notify"> All Notifications</a> </li>
+                        </ul>
+                    </ul>
+                </nav>
+                <footer>
+                    <i class="bi bi-power"></i>
+                    <h1 style="display:inline; padding:20px; font-weight:semi-bold;">
+                        <a href="/logout">Logout</a>
+                    </h1>
+                </footer>
+            </aside>
+
+            <main class=col-9>
+                <div class="container-fluid">
+                    <center>
+                     <div class="rou">
+                         <center>
+                            <img class="img-fluid" src="static/image/user.webp">               
+                        </center>
+                    </div>
+                    </center>
+                    <div class="container-fluid text-left p-2" >
+                        <h4><b>Username:</b> {{ro.username}}</h4>
+                        <form action="/change_user", method="POST">
+                            <input type="hidden" name="username" value="{{ro.username}}">
+                            <div class="form-group">
+                                <h4>Change Username</h4>
+                                <input class="form-control" type="text" name="usernames" placeholder="New Username">
+                            </div>
+                            <button class="btn btn-warning">Update Username</button>
+                        </form>  
+                    </div>
+                    <div class="container-fluid text-left p-2" >
+                        <form action="/change_pass", method="POST">
+                            <h4><b>Change Password</b></h4>
+                            <input type="hidden" name="username" value="{{ro.username}}">
+                            <div class="form-group">
+                                <h4>Current Password</h4>
+                                <input class="form-control" type="password" name="current" placeholder="New Username">
+                            </div>
+                            <div class="form-group">
+                                <h4>New Password</h4>
+                                <input class="form-control" type="password" name="new" placeholder="New Username">
+                            </div>
+                            <div class="form-group">
+                                <h4>Confirm Password</h4>
+                                <input class="form-control" type="password" name="confirm" placeholder="New Username">
+                            </div>
+                            <button class="btn btn-danger">Update Password</button>
+                        </form>  
+                    </div>
+                </div>
+            </main>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

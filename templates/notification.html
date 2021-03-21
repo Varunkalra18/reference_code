@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}
+    Notification
+{% endblock %}
+{% block main %}
+<div class ="container-fluid">
+    <div class="row">
+        <aside class="col-3">
+            <header>
+                <h1> BOOKSTORE </h1>
+                <p> A Good reader is a good learner</p>
+            </header>
+            <nav class="navbar d-md-block lis" id="nav">
+                <ul style="list-style: none; text-align: left;">
+                <li class="list">Text Books</li>
+                <li class="list">Offer Zone</li>
+                <li class="list">Subscription</li>
+                <li class="list">Faq</li>
+                <li class="list">Sign up</li>
+                </ul>
+            </nav>
+        </aside>
+        <main class=col-9>
+            <div class="container-fluid">
+                
+                <div class="row num">
+                
+                        {% for ro in row %}
+                        <span class="product-heading"><h1>{{ ro.action }}</h1></span> 
+                        {% endfor %}
+                </div>
+                
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}

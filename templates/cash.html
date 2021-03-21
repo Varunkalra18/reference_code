@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}
+    Balance
+{% endblock %}
+{% block main %}
+<div class="container formm ">
+<div class="fore">
+    {% for ro in row %}
+    <h4 class="display-4">Your Current Balance is {{ro.cash}} INR.</h4>
+    {% endfor %}
+    <h5 class="display-5">
+        Add Some Cash To The Wallet
+    </h5>
+    <form action= "/balance" method="POST">
+        <div class="form-group">
+            <label>Enter the amount</label><br>
+            <input autocomplete="off" autofocus class="form-control" name="amount" placeholder="Enter the amount" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">ADD</button>
+    </form>
+</div>
+</div>
+{% endblock %}

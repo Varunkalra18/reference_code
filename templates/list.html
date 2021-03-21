@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block title %}
+    BOOKS
+{% endblock %}
+{% block main %}
+<div class ="container-fluid">
+    <div class="row">
+        <aside class="col-3">
+            <header>
+                <h1> BOOKSTORE </h1>
+                <p> A Good reader is a good learner</p>
+            </header>
+            <nav class="navbar d-md-block lis" id="nav">
+                <ul style="list-style: none; text-align: left;">
+                <li class="list">Text Books</li>
+                <li class="list">Offer Zone</li>
+                <li class="list">Subscription</li>
+                <li class="list">Faq</li>
+                <li class="list">Sign up</li>
+                </ul>
+            </nav>
+        </aside>
+        <main class=col-9>
+            <div class="container-fluid">
+                {% for ro in row %}
+                <div class="row num">
+                    <div class="col-2">
+                        <div class="card">
+                            <img src="static/image/booklis.jpg">
+                        </div>
+                    </div>
+                    <div class="col-8 main-content">
+                        <span class="product-heading"><h1>{{ ro.name }}</h1></span>
+                        <span style="color: green; font-weight: bold; ">{{ ro.discount }}% Off</span>
+                        <p class="display-4"><i class="fa fa-inr"></i><b>{{ ro.price }}</b></p>
+                        <p class="display-5">{{ ro.description }}</p>
+                        
+                    </div>
+                    <div class="col-2">
+                        <form action="/buys" method="POST">
+                            <input type="hidden" name="bookid" value= "{{ro.book_id}}">
+                            <button class="btn" type="submit">Buy Now</button>
+                        </form>
+                        <form action="/cart" method="POST">
+                            <input type="hidden" name="bookid" value= "{{ro.book_id}}">
+                            <button class="btn" type="submit" method="POST">Add To Cart</button>
+                        </form>
+                        <form action="/wishlist" method="POST">
+                            <input type="hidden" name="bookid" value= "{{ro.book_id}}">
+                            <button class="btn" type="submit" method="POST">Add To wishlist</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

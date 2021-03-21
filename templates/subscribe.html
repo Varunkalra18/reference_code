@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}
+Subscription
+{% endblock %}
+{% block main %}
+<div class="container formm">
+        <div class="for">
+            <p class="display-3">
+                Subscribe Our News Letter
+            </p>
+            <form action="/subscribe" method="POST">
+                <label>Please Confirm by Writing "YES" below to get subscribed to our news letter</label>
+                <div class="form-group">
+                    <input type ="text" name="confirm" placeholder="yes">
+                </div>
+                <button class="btn btn-danger" type="submit">Submit</button>
+            </form>
+        </div>
+        <button class=btn btn-primary><a href="/">Go Back</a></button>
+</div>
+{% endblock %}

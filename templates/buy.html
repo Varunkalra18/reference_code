@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    Buy
+{% endblock%}
+{% block main %}
+{% for ro in row %}
+
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-4">
+            <div class="card">
+                <img class="img-card-top" src="static/image/booklis.jpg">
+                <form action="/cart" method="POST">
+                    <input type="hidden" name="bookid" value = "{{ ro.book_id }}">                    
+                    <button class="btn btn-warning" style="width: 100%;"><h3>Add To cart</h3></button>
+                </form>
+                <form action="/wishlist" method="POST">
+                    <input type="hidden" name="bookid" value = "{{ ro.book_id }}">                    
+                    <button class="btn btn-warning" style="width: 100%;"><h3>Add To Wishlist</h3></button>
+                </form>
+            </div>
+        </div>
+        <div class="col-8 text-left">
+            <h1 class="product-heading">{{ ro.name }}</h1>
+            <p class="display-5">{{ ro.description }}</p>
+            <span style="color: green; font-weight: bold; ">{{ ro.discount }}% Off</span>
+            <p class="display-4"><i class="fa fa-inr"></i><b>{{ ro.price }}</b></p>
+            <form action= "/buy" method="POST">
+                <div class="form-group">
+                    <label>Enter the address</label><br>
+                    <input type="hidden" name="price" value = "{{ ro.price }}">
+                    <input type="hidden" name="bookid" value = "{{ ro.book_id }}">
+                    <input autocomplete="off" autofocus class="form-control" name="address" placeholder="Address" type="text">
+                </div>                
+                <button class="btn btn-primary" type="submit">Buy Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
